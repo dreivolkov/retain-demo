@@ -65,23 +65,23 @@ export default function DemoSelector() {
           </h1>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-3 flex-1">
+        <div className="grid gap-4 sm:grid-cols-3">
           {OPTIONS.map((opt) => (
             <button
               key={opt.href}
               onClick={() => router.push(opt.href)}
-              className="group relative flex flex-col rounded-xl border border-paddle-warm200 bg-white p-8 text-left transition hover:border-paddle-warm600 hover:shadow-lg"
+              className="group relative flex flex-col rounded-xl border border-paddle-warm200 bg-white p-5 text-left transition hover:border-paddle-warm600 hover:shadow-lg"
             >
-              <span className="font-mono text-[11px] text-paddle-warm600/30 uppercase tracking-widest mb-6">
+              <span className="font-mono text-[11px] text-paddle-warm600/30 uppercase tracking-widest mb-3">
                 {opt.label}
               </span>
-              <p className="font-serrif text-2xl leading-tight text-paddle-warm600 mb-4">
+              <p className="font-serrif text-2xl leading-tight text-paddle-warm600 mb-2">
                 {opt.title}
               </p>
               <p className="text-sm font-lausanne leading-relaxed text-paddle-warm600/60 flex-1">
                 {opt.description}
               </p>
-              <div className="mt-8 flex items-center gap-2">
+              <div className="mt-4 flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-paddle-yellow" />
                 <span className="font-mono text-[10px] uppercase tracking-widest text-paddle-warm600/40 group-hover:text-paddle-warm600 transition">
                   Launch demo
