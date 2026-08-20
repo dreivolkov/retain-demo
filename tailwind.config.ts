@@ -8,7 +8,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        gmailblue: "#1a73e8",
+        paddle: {
+          yellow: "#FFD400",
+          warm50: "#FBF9F5",
+          warm200: "#D6CBB6",
+          warm600: "#1C1A15",
+        },
+      },
+      fontFamily: {
+        lausanne: ["TWKLausanne", "sans-serif"],
+        serrif: ["SerrifCondensed", "serif"],
+        mono: ["SpaceMono", "monospace"],
       },
     },
   },

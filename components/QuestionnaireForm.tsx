@@ -37,14 +37,9 @@ export default function QuestionnaireForm() {
         body: JSON.stringify({ url: form.landingPage }),
       });
       const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || "Screenshot failed");
-      }
+      if (!res.ok) throw new Error(data.error || "Screenshot failed");
 
-      updateProspect({
-        ...form,
-        screenshotDataUrl: data.image,
-      });
+      updateProspect({ ...form, screenshotDataUrl: data.image });
       router.push("/demo/select");
     } catch (err) {
       setStatus("error");
@@ -53,14 +48,14 @@ export default function QuestionnaireForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-4">
       <Field
-        label="Prospect's company name"
+        label="Company name"
         value={form.companyName}
         onChange={(v) => setForm((f) => ({ ...f, companyName: v }))}
         placeholder="Acme Inc"
       />
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-3">
         <Field
           label="Contact name"
           value={form.contactName}
@@ -75,14 +70,14 @@ export default function QuestionnaireForm() {
         />
       </div>
       <Field
-        label="Prospect's landing page URL"
+        label="Landing page URL"
         value={form.landingPage}
         onChange={(v) => setForm((f) => ({ ...f, landingPage: v }))}
         placeholder="https://acme.com"
         type="url"
       />
       <Field
-        label="Prospect's logo URL"
+        label="Logo URL"
         value={form.logo}
         onChange={(v) => setForm((f) => ({ ...f, logo: v }))}
         placeholder="https://acme.com/logo.png"
@@ -90,16 +85,20 @@ export default function QuestionnaireForm() {
       />
 
       {error && (
-        <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>
+        <p className="rounded border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-700 font-lausanne">
+          {error}
+        </p>
       )}
 
-      <button
-        type="submit"
-        disabled={!canSubmit || status === "loading"}
-        className="w-full rounded-md bg-gmailblue px-4 py-2.5 text-sm font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        {status === "loading" ? "Capturing landing page…" : "Build the demo"}
-      </button>
+      <div className="pt-2">
+        <button
+          type="submit"
+          disabled={!canSubmit || status === "loading"}
+          className="w-full rounded bg-paddle-yellow px-5 py-3 text-sm font-lausanne font-semibold text-paddle-warm600 transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          {status === "loading" ? "Capturing landing page…" : "Build the demo →"}
+        </button>
+      </div>
     </form>
   );
 }
@@ -119,14 +118,16 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-sm font-medium text-gray-700">{label}</span>
+      <span className="mb-1.5 block font-mono text-[10px] uppercase tracking-[0.15em] text-paddle-warm600/60">
+        {label}
+      </span>
       <input
         type={type}
         required
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gmailblue focus:outline-none focus:ring-1 focus:ring-gmailblue"
+        className="w-full rounded border border-paddle-warm200 bg-white px-3 py-2.5 text-sm font-lausanne text-paddle-warm600 placeholder:text-paddle-warm600/30 focus:border-paddle-warm600 focus:outline-none transition"
       />
     </label>
   );

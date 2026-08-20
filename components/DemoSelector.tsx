@@ -3,22 +3,26 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useDemo } from "@/lib/demo-context";
+import { PaddleLogoDark } from "@/components/PaddleLogo";
 
 const OPTIONS = [
   {
     href: "/demo/payment-recovery",
-    title: "Demo Payment Recovery",
-    description: "Walk through the dunning email that recovers a failed payment.",
+    label: "01",
+    title: "Payment Recovery",
+    description: "Walk a prospect through the recovery email their customer would receive after a failed payment — personalised with their brand.",
   },
   {
     href: "/demo/payment-recovery-in-app",
-    title: "Demo Payment Recovery In-App",
-    description: "Show the in-app notification that prompts a card update.",
+    label: "02",
+    title: "Payment Recovery In-App",
+    description: "Show the in-app notification that surfaces inside their product, prompting customers to update their card before the subscription lapses.",
   },
   {
     href: "/demo/cancellation-flow",
-    title: "Demo Cancellation Flows",
-    description: "Trigger the live Retain cancellation flow modal.",
+    label: "03",
+    title: "Cancellation Flows",
+    description: "Trigger a live, interactive cancellation flow — surveys, salvage offers, and deflection logic — powered by real Retain data.",
   },
 ];
 
@@ -32,46 +36,89 @@ export default function DemoSelector() {
     }
   }, [hydrated, prospect, router]);
 
-  if (!hydrated || !prospect.companyName) {
-    return null;
-  }
+  if (!hydrated || !prospect.companyName) return null;
 
   return (
-    <div className="mx-auto max-w-2xl px-6 py-16">
-      <div className="mb-8 flex items-center gap-3">
-        {prospect.logo && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={prospect.logo}
-            alt={prospect.companyName}
-            className="h-10 w-10 rounded object-contain"
-          />
-        )}
-        <div>
-          <p className="text-sm text-gray-500">Demoing for</p>
-          <h1 className="text-lg font-semibold text-gray-900">{prospect.companyName}</h1>
+    <div className="min-h-screen bg-paddle-warm50 flex flex-col">
+      {/* Top bar */}
+      <header className="flex items-center justify-between border-b border-paddle-warm200 px-8 py-5">
+        <PaddleLogoDark className="w-20" />
+        <div className="flex items-center gap-4">
+          {prospect.logo && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={prospect.logo}
+              alt={prospect.companyName}
+              className="h-7 w-auto object-contain opacity-80"
+            />
+          )}
+          <span className="hidden sm:block text-xs font-mono text-paddle-warm600/50 uppercase tracking-widest">
+            {prospect.companyName}
+          </span>
+        </div>
+        <button
+          onClick={() => router.push("/")}
+          className="text-xs font-mono uppercase tracking-widest text-paddle-warm600/50 hover:text-paddle-warm600 transition"
+        >
+          ← New prospect
+        </button>
+      </header>
+
+      {/* Content */}
+      <div className="flex flex-1 flex-col px-8 py-12 max-w-4xl mx-auto w-full">
+        <div className="mb-10">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-paddle-warm600/40 mb-3">
+            Step 2 of 2 · Choose a demo
+          </p>
+          <h1 className="font-serrif text-[2.5rem] leading-tight text-paddle-warm600">
+            What would you like<br />to show {prospect.contactName.split(" ")[0]}?
+          </h1>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-3">
+          {OPTIONS.map((opt) => (
+            <button
+              key={opt.href}
+              onClick={() => router.push(opt.href)}
+              className="group relative flex flex-col rounded-lg border border-paddle-warm200 bg-white p-6 text-left transition hover:border-paddle-warm600 hover:shadow-md"
+            >
+              <span className="font-mono text-[10px] text-paddle-warm600/30 uppercase tracking-widest mb-4">
+                {opt.label}
+              </span>
+              <p className="font-serrif text-xl leading-tight text-paddle-warm600 mb-3">
+                {opt.title}
+              </p>
+              <p className="text-xs font-lausanne leading-relaxed text-paddle-warm600/60 flex-1">
+                {opt.description}
+              </p>
+              <div className="mt-6 flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-paddle-yellow" />
+                <span className="font-mono text-[9px] uppercase tracking-widest text-paddle-warm600/40 group-hover:text-paddle-warm600 transition">
+                  Launch demo
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Prospect summary strip */}
+        <div className="mt-8 rounded-lg border border-paddle-warm200 bg-paddle-warm50 px-5 py-4 flex items-center gap-6 flex-wrap">
+          <div>
+            <p className="font-mono text-[9px] uppercase tracking-widest text-paddle-warm600/40 mb-0.5">Contact</p>
+            <p className="text-sm font-lausanne text-paddle-warm600">{prospect.contactName}</p>
+          </div>
+          <div className="h-4 w-px bg-paddle-warm200 hidden sm:block" />
+          <div>
+            <p className="font-mono text-[9px] uppercase tracking-widest text-paddle-warm600/40 mb-0.5">Title</p>
+            <p className="text-sm font-lausanne text-paddle-warm600">{prospect.jobTitle}</p>
+          </div>
+          <div className="h-4 w-px bg-paddle-warm200 hidden sm:block" />
+          <div>
+            <p className="font-mono text-[9px] uppercase tracking-widest text-paddle-warm600/40 mb-0.5">Company</p>
+            <p className="text-sm font-lausanne text-paddle-warm600">{prospect.companyName}</p>
+          </div>
         </div>
       </div>
-
-      <div className="space-y-3">
-        {OPTIONS.map((opt) => (
-          <button
-            key={opt.href}
-            onClick={() => router.push(opt.href)}
-            className="w-full rounded-lg border border-gray-200 bg-white p-4 text-left shadow-sm transition hover:border-gmailblue hover:shadow"
-          >
-            <p className="font-medium text-gray-900">{opt.title}</p>
-            <p className="mt-1 text-sm text-gray-500">{opt.description}</p>
-          </button>
-        ))}
-      </div>
-
-      <button
-        onClick={() => router.push("/")}
-        className="mt-8 text-sm text-gray-500 underline underline-offset-2 hover:text-gray-700"
-      >
-        Start a new prospect
-      </button>
     </div>
   );
 }
