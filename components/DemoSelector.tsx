@@ -10,25 +10,25 @@ const OPTIONS = [
     href: "/demo/payment-recovery",
     label: "01",
     title: "Payment Recovery",
-    description: "Walk through the recovery email users would receive after a failed payment — personalised with their brand.",
+    description: "Walk through the recovery email users would receive after a failed payment - personalised with their brand.",
   },
   {
     href: "/demo/payment-recovery-in-app",
     label: "02",
     title: "Payment Recovery In-App",
-    description: "Show the in-app notification that surfaces inside their product, prompting customers to update their card before the subscription lapses.",
+    description: "See the in-app notification that surfaces inside their product, prompting customers to update their card before the subscription lapses.",
   },
   {
     href: "/demo/cancellation-flow",
     label: "03",
     title: "Cancellation Flows",
-    description: "Trigger a live, interactive cancellation flow — surveys, salvage offers, and deflection logic — powered by real Retain data.",
+    description: "Trigger a live, interactive cancellation flow - surveys, salvage offers, and deflection logic - powered by real Retain data.",
   },
   {
     href: "/demo/term-optimization",
     label: "04",
     title: "Term Optimization",
-    description: "Show the upgrade email a long-term monthly subscriber receives — offering 2 free months to switch to annual — and trigger the live Retain upgrade flow.",
+    description: "See the upgrade email a long-term monthly subscriber receives - offering 2 free months to switch to annual - and trigger the live Retain upgrade flow.",
   },
 ];
 

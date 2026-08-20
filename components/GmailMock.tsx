@@ -68,7 +68,7 @@ export default function GmailMock({ prospect }: { prospect: ProspectProfile }) {
             and we&apos;ll give it another try.
           </p>
           <p>Let us know if you have any questions.</p>
-          <p>—</p>
+          <p>-</p>
           <div>
             <p>{prospect.contactName}</p>
             <p>

@@ -17,7 +17,7 @@ export default function HomePage() {
           </h1>
           <p className="mt-8 text-sm leading-relaxed text-paddle-warm200 max-w-xs font-lausanne font-light">
             Build a personalised Retain walkthrough for your prospect in under a minute.
-            Payment recovery, in-app notifications, and cancellation flows — all live.
+            Payment recovery, in-app notifications, and cancellation flows - all live.
           </p>
         </div>
 

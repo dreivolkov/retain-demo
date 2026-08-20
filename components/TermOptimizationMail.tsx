@@ -57,7 +57,7 @@ export default function TermOptimizationMail({ prospect }: { prospect: ProspectP
           <p>Hey {recipientName},</p>
           <p>
             {senderFirstName} from {prospect.companyName || "our team"} here.
-            Thanks for being with us for a while — I&apos;m hoping you have plans to
+            Thanks for being with us for a while - I&apos;m hoping you have plans to
             stick around for the next year.
           </p>
           <p>
@@ -72,7 +72,7 @@ export default function TermOptimizationMail({ prospect }: { prospect: ProspectP
             <strong>and we&apos;ll take care of the rest.</strong>
           </p>
           <p>Let us know if you have any questions.</p>
-          <p>—</p>
+          <p>-</p>
           <div>
             <p>{prospect.contactName}</p>
             <p>
