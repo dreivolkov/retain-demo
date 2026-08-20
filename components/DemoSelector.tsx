@@ -10,7 +10,7 @@ const OPTIONS = [
     href: "/demo/payment-recovery",
     label: "01",
     title: "Payment Recovery",
-    description: "Walk a prospect through the recovery email their customer would receive after a failed payment — personalised with their brand.",
+    description: "Walk through the recovery email users would receive after a failed payment — personalised with their brand.",
   },
   {
     href: "/demo/payment-recovery-in-app",
@@ -71,7 +71,7 @@ export default function DemoSelector() {
             Step 2 of 2 · Choose a demo
           </p>
           <h1 className="font-serrif text-[2.5rem] leading-tight text-paddle-warm600">
-            What would you like<br />to show {prospect.contactName.split(" ")[0]}?
+            What would you like<br />to show?
           </h1>
         </div>
 
