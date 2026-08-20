@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDemo } from "@/lib/demo-context";
 import LandingScreenshot from "@/components/LandingScreenshot";
-import CancelSubscriptionButton from "@/components/CancelSubscriptionButton";
+import RetainDemoTrigger from "@/components/RetainDemoTrigger";
 
 export default function CancellationFlowPage() {
   const router = useRouter();
@@ -26,7 +26,16 @@ export default function CancellationFlowPage() {
         </p>
         <p className="mt-1 text-xs text-gray-500">Manage your subscription</p>
         <div className="mt-3">
-          <CancelSubscriptionButton />
+          <RetainDemoTrigger feature="cancellationFlow">
+            {(trigger) => (
+              <button
+                onClick={trigger}
+                className="rounded-md border border-red-300 bg-white px-4 py-2 text-sm font-medium text-red-600 shadow-sm hover:bg-red-50"
+              >
+                Cancel subscription
+              </button>
+            )}
+          </RetainDemoTrigger>
         </div>
       </div>
     </LandingScreenshot>

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDemo } from "@/lib/demo-context";
 import LandingScreenshot from "@/components/LandingScreenshot";
-import InAppNotificationBanner from "@/components/InAppNotificationBanner";
+import RetainDemoTrigger from "@/components/RetainDemoTrigger";
 
 export default function PaymentRecoveryInAppPage() {
   const router = useRouter();
@@ -20,10 +20,8 @@ export default function PaymentRecoveryInAppPage() {
 
   return (
     <LandingScreenshot screenshotDataUrl={prospect.screenshotDataUrl}>
-      <InAppNotificationBanner
-        companyName={prospect.companyName}
-        onUpdateClick={() => router.push("/demo/payment-recovery/checkout")}
-      />
+      {/* Auto-launches Retain's real in-app payment recovery notification after a short delay */}
+      <RetainDemoTrigger feature="paymentRecoveryInApp" autoTrigger autoTriggerDelay={1200} />
     </LandingScreenshot>
   );
 }

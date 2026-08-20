@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDemo } from "@/lib/demo-context";
 import LandingScreenshot from "@/components/LandingScreenshot";
-import PaddleCheckoutButton from "@/components/PaddleCheckoutButton";
+import RetainDemoTrigger from "@/components/RetainDemoTrigger";
 
 export default function PaymentRecoveryCheckoutPage() {
   const router = useRouter();
@@ -20,7 +20,8 @@ export default function PaymentRecoveryCheckoutPage() {
 
   return (
     <LandingScreenshot screenshotDataUrl={prospect.screenshotDataUrl}>
-      <PaddleCheckoutButton autoOpen />
+      {/* Auto-launches Retain's payment recovery update form on mount */}
+      <RetainDemoTrigger feature="paymentRecovery" autoTrigger />
     </LandingScreenshot>
   );
 }
