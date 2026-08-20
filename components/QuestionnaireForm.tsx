@@ -6,7 +6,7 @@ import { useDemo } from "@/lib/demo-context";
 
 export default function QuestionnaireForm() {
   const router = useRouter();
-  const { prospect, updateProspect } = useDemo();
+  const { prospect, setProspect, updateProspect } = useDemo();
   const [form, setForm] = useState({
     companyName: prospect.companyName,
     contactName: prospect.contactName,
@@ -28,7 +28,7 @@ export default function QuestionnaireForm() {
   };
 
   function handleDummy() {
-    updateProspect(DUMMY);
+    setProspect(DUMMY);
     router.push("/demo/select");
   }
 
