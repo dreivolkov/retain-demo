@@ -1,0 +1,18 @@
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./app/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        gmailblue: "#1a73e8",
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
