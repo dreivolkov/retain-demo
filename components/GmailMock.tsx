@@ -18,7 +18,7 @@ export default function GmailMock({ prospect }: { prospect: ProspectProfile }) {
         <div className="ml-4 flex-1 max-w-xl rounded-full bg-gray-100 px-4 py-2 text-sm text-gray-500">
           Search mail
         </div>
-        <div className="ml-auto h-8 w-8 rounded-full bg-gray-300" />
+        <div className="ml-auto h-8 w-8 rounded-full bg-[#4285f4] flex items-center justify-center text-white text-sm font-medium select-none">K</div>
       </div>
 
       <div className="mx-auto max-w-4xl px-6 py-6">
