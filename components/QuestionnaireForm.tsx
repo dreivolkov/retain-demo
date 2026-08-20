@@ -75,13 +75,13 @@ export default function QuestionnaireForm() {
           label="Contact name"
           value={form.contactName}
           onChange={(v) => setForm((f) => ({ ...f, contactName: v }))}
-          placeholder="Jamie Rivera"
+          placeholder="Andrei Volkov"
         />
         <Field
           label="Job title"
           value={form.jobTitle}
           onChange={(v) => setForm((f) => ({ ...f, jobTitle: v }))}
-          placeholder="VP of Growth"
+          placeholder="Solutions Engineer"
         />
       </div>
       <Field

@@ -39,7 +39,7 @@ export default function GmailMock({ prospect }: { prospect: ProspectProfile }) {
 
         <div className="border-b border-gray-100 pb-4">
           <div className="flex items-start gap-3">
-            <div className="h-10 w-10 shrink-0 rounded-full bg-gray-200" />
+            <SenderAvatar logo={prospect.logo} company={prospect.companyName} />
             <div>
               <p className="font-medium">
                 {fromDisplayName(prospect)}{" "}
@@ -92,4 +92,33 @@ export default function GmailMock({ prospect }: { prospect: ProspectProfile }) {
       </div>
     </div>
   );
+}
+
+const PADDLE_LOGO = "/paddle-logo.svg";
+
+function SenderAvatar({ logo, company }: { logo: string; company: string }) {
+  if (logo === PADDLE_LOGO) {
+    // Paddle "p" mark — yellow circle with the brand P letterform
+    return (
+      <div className="h-10 w-10 shrink-0 rounded-full bg-[#FFD400] flex items-center justify-center overflow-hidden">
+        <svg viewBox="455 448 210 244" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-7">
+          <path d="M658.02 538.62C658.02 585.227 620.381 623.062 573.839 623.357H539.015V686.001H508.772V595.733H573.839C605.129 595.439 630.429 569.975 630.429 538.62C630.429 507.265 605.129 481.801 573.839 481.506H508.772V453.883H573.839C620.381 454.177 658.02 492.013 658.02 538.62Z" fill="#1C1A15"/>
+          <path d="M508.772 491.318C508.842 518.129 530.548 539.863 557.317 539.863C530.548 539.863 508.842 561.596 508.772 588.407C508.703 561.596 486.997 539.863 460.228 539.863C486.997 539.863 508.703 518.129 508.772 491.318Z" fill="#1C1A15"/>
+        </svg>
+      </div>
+    );
+  }
+
+  if (logo) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={logo}
+        alt={company}
+        className="h-10 w-10 shrink-0 rounded-full object-contain bg-white border border-gray-100 p-1"
+      />
+    );
+  }
+
+  return <div className="h-10 w-10 shrink-0 rounded-full bg-gray-200" />;
 }
