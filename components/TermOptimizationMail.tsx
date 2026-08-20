@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { ProspectProfile } from "@/types/prospect";
 import { fromAddress, fromDisplayName } from "@/lib/gmail-copy";
 
-const TABS = ["Contact Attempt 1/2", "Contact Attempt 2/2"];
+const TABS = ["1st attempt", "2nd attempt"];
 
 export default function TermOptimizationMail({ prospect }: { prospect: ProspectProfile }) {
   const [activeTab, setActiveTab] = useState(0);
