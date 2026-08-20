@@ -61,7 +61,7 @@ export default function DemoSelector() {
             Step 2 of 2 · Choose a demo
           </p>
           <h1 className="font-serrif text-[2.5rem] leading-tight text-paddle-warm600">
-            What would you like<br />to show?
+            What would you like<br />to see?
           </h1>
         </div>
 
