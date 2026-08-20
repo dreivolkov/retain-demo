@@ -55,8 +55,8 @@ export default function DemoSelector() {
       </header>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col px-8 py-12 max-w-4xl mx-auto w-full">
-        <div className="mb-10">
+      <div className="flex flex-1 flex-col px-8 py-12 max-w-6xl mx-auto w-full">
+        <div className="mb-12">
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-paddle-warm600/40 mb-3">
             Step 2 of 2 · Choose a demo
           </p>
@@ -65,25 +65,25 @@ export default function DemoSelector() {
           </h1>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-3 flex-1">
           {OPTIONS.map((opt) => (
             <button
               key={opt.href}
               onClick={() => router.push(opt.href)}
-              className="group relative flex flex-col rounded-lg border border-paddle-warm200 bg-white p-6 text-left transition hover:border-paddle-warm600 hover:shadow-md"
+              className="group relative flex flex-col rounded-xl border border-paddle-warm200 bg-white p-8 text-left transition hover:border-paddle-warm600 hover:shadow-lg"
             >
-              <span className="font-mono text-[10px] text-paddle-warm600/30 uppercase tracking-widest mb-4">
+              <span className="font-mono text-[11px] text-paddle-warm600/30 uppercase tracking-widest mb-6">
                 {opt.label}
               </span>
-              <p className="font-serrif text-xl leading-tight text-paddle-warm600 mb-3">
+              <p className="font-serrif text-2xl leading-tight text-paddle-warm600 mb-4">
                 {opt.title}
               </p>
-              <p className="text-xs font-lausanne leading-relaxed text-paddle-warm600/60 flex-1">
+              <p className="text-sm font-lausanne leading-relaxed text-paddle-warm600/60 flex-1">
                 {opt.description}
               </p>
-              <div className="mt-6 flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-paddle-yellow" />
-                <span className="font-mono text-[9px] uppercase tracking-widest text-paddle-warm600/40 group-hover:text-paddle-warm600 transition">
+              <div className="mt-8 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-paddle-yellow" />
+                <span className="font-mono text-[10px] uppercase tracking-widest text-paddle-warm600/40 group-hover:text-paddle-warm600 transition">
                   Launch demo
                 </span>
               </div>
