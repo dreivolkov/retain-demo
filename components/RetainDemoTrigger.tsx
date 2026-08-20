@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { initializePaddle } from "@paddle/paddle-js";
 
-type RetainFeature = "paymentRecovery" | "paymentRecoveryInApp" | "cancellationFlow";
+type RetainFeature = "paymentRecovery" | "paymentRecoveryInApp" | "cancellationFlow" | "termOptimization";
 
 const LIVE_TOKEN = process.env.NEXT_PUBLIC_PADDLE_LIVE_TOKEN;
 

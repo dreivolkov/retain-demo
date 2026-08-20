@@ -24,6 +24,12 @@ const OPTIONS = [
     title: "Cancellation Flows",
     description: "Trigger a live, interactive cancellation flow — surveys, salvage offers, and deflection logic — powered by real Retain data.",
   },
+  {
+    href: "/demo/term-optimization",
+    label: "04",
+    title: "Term Optimization",
+    description: "Show the upgrade email a long-term monthly subscriber receives — offering 2 free months to switch to annual — and trigger the live Retain upgrade flow.",
+  },
 ];
 
 export default function DemoSelector() {
@@ -65,7 +71,7 @@ export default function DemoSelector() {
           </h1>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {OPTIONS.map((opt) => (
             <button
               key={opt.href}

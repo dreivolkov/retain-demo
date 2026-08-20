@@ -21,3 +21,7 @@ export function fromDisplayName(prospect: ProspectProfile): string {
 export function subjectLine(prospect: ProspectProfile): string {
   return `Your \u{1F4B3} payment for ${prospect.companyName || "your account"} failed`;
 }
+
+export function termOptimizationSubjectLine(prospect: ProspectProfile): string {
+  return `Save money on your ${prospect.companyName || "your"} subscription`;
+}
