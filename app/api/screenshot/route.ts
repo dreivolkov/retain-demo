@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 export const maxDuration = 60;
 
 const CHROMIUM_PACK_URL =
-  "https://github.com/Sparticuz/chromium/releases/download/v131.0.1/chromium-v131.0.1-pack.tar";
+  "https://github.com/Sparticuz/chromium/releases/download/v149.0.0/chromium-v149.0.0-pack.tar";
 
 function normalizeUrl(input: string): string {
   const trimmed = input.trim();
@@ -31,6 +31,9 @@ export async function POST(req: NextRequest) {
 
   const isLocal = !!process.env.CHROME_EXECUTABLE_PATH;
 
+  // Disable WebGL/graphics acceleration — required in serverless environments
+  chromium.setGraphicsMode = false;
+
   let browser;
   try {
     browser = await puppeteer.launch({
@@ -38,7 +41,7 @@ export async function POST(req: NextRequest) {
       executablePath: isLocal
         ? process.env.CHROME_EXECUTABLE_PATH
         : await chromium.executablePath(CHROMIUM_PACK_URL),
-      headless: true,
+      headless: "shell",
       defaultViewport: { width: 1440, height: 900 },
     });
 
