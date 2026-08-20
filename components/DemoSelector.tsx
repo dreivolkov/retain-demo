@@ -91,23 +91,6 @@ export default function DemoSelector() {
           ))}
         </div>
 
-        {/* Prospect summary strip */}
-        <div className="mt-8 rounded-lg border border-paddle-warm200 bg-paddle-warm50 px-5 py-4 flex items-center gap-6 flex-wrap">
-          <div>
-            <p className="font-mono text-[9px] uppercase tracking-widest text-paddle-warm600/40 mb-0.5">Contact</p>
-            <p className="text-sm font-lausanne text-paddle-warm600">{prospect.contactName}</p>
-          </div>
-          <div className="h-4 w-px bg-paddle-warm200 hidden sm:block" />
-          <div>
-            <p className="font-mono text-[9px] uppercase tracking-widest text-paddle-warm600/40 mb-0.5">Title</p>
-            <p className="text-sm font-lausanne text-paddle-warm600">{prospect.jobTitle}</p>
-          </div>
-          <div className="h-4 w-px bg-paddle-warm200 hidden sm:block" />
-          <div>
-            <p className="font-mono text-[9px] uppercase tracking-widest text-paddle-warm600/40 mb-0.5">Company</p>
-            <p className="text-sm font-lausanne text-paddle-warm600">{prospect.companyName}</p>
-          </div>
-        </div>
       </div>
     </div>
   );
