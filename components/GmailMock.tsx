@@ -61,7 +61,7 @@ export default function GmailMock({ prospect }: { prospect: ProspectProfile }) {
             through.{" "}
             <Link
               href="/demo/payment-recovery/checkout"
-              className="text-gmailblue underline underline-offset-2"
+              className="text-[#1a73e8] underline underline-offset-2"
             >
               Please update your information here
             </Link>{" "}
