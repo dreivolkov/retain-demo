@@ -15,34 +15,21 @@ export default function QuestionnaireForm() {
     logo: prospect.logo,
   });
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
-  const [dummyLoading, setDummyLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const DUMMY = {
     companyName: "Paddle",
     contactName: "Irina",
-    jobTitle: "Head of Growth",
+    jobTitle: "Customer Support",
     landingPage: "https://www.paddle.com/",
     logo: "/paddle-logo.svg",
+    recipientName: "Khem",
+    screenshotDataUrl: "/dummy-screenshot.png",
   };
 
-  async function handleDummy() {
-    setDummyLoading(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/screenshot", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: DUMMY.landingPage }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Screenshot failed");
-      updateProspect({ ...DUMMY, screenshotDataUrl: data.image });
-      router.push("/demo/select");
-    } catch (err) {
-      setDummyLoading(false);
-      setError(err instanceof Error ? err.message : "Something went wrong");
-    }
+  function handleDummy() {
+    updateProspect(DUMMY);
+    router.push("/demo/select");
   }
 
   const canSubmit =
@@ -121,7 +108,7 @@ export default function QuestionnaireForm() {
       <div className="pt-2 space-y-2">
         <button
           type="submit"
-          disabled={!canSubmit || status === "loading" || dummyLoading}
+          disabled={!canSubmit || status === "loading"}
           className="w-full rounded bg-paddle-yellow px-5 py-3 text-sm font-lausanne font-semibold text-paddle-warm600 transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40"
         >
           {status === "loading" ? "Capturing landing page…" : "Build the demo →"}
@@ -136,10 +123,10 @@ export default function QuestionnaireForm() {
         <button
           type="button"
           onClick={handleDummy}
-          disabled={status === "loading" || dummyLoading}
+          disabled={status === "loading"}
           className="w-full rounded border border-paddle-warm200 px-5 py-3 text-sm font-lausanne text-paddle-warm600/70 transition hover:border-paddle-warm600 hover:text-paddle-warm600 disabled:cursor-not-allowed disabled:opacity-40"
         >
-          {dummyLoading ? "Capturing landing page…" : "Use dummy data"}
+          Use dummy data
         </button>
       </div>
     </form>

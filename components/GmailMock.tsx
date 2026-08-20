@@ -5,7 +5,7 @@ import type { ProspectProfile } from "@/types/prospect";
 import { fromAddress, fromDisplayName, subjectLine } from "@/lib/gmail-copy";
 
 export default function GmailMock({ prospect }: { prospect: ProspectProfile }) {
-  const firstName = prospect.contactName.trim().split(/\s+/)[0] || "there";
+  const recipientName = prospect.recipientName || "there";
 
   return (
     <div className="min-h-screen bg-white text-[#202124]">
@@ -53,7 +53,7 @@ export default function GmailMock({ prospect }: { prospect: ProspectProfile }) {
         </div>
 
         <div className="space-y-4 py-8 text-[15px] leading-relaxed">
-          <p>Hey {firstName},</p>
+          <p>Hey {recipientName},</p>
           <p>
             {prospect.contactName || "Our team"} from {prospect.companyName || "our team"}{" "}
             here. It looks like your subscription payment of $99.99 didn&apos;t go
