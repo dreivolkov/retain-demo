@@ -1,17 +1,64 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import type { ProspectProfile } from "@/types/prospect";
-import { fromAddress, fromDisplayName, termOptimizationSubjectLine } from "@/lib/gmail-copy";
+import { fromAddress, fromDisplayName } from "@/lib/gmail-copy";
+
+const TABS = ["Contact Attempt 1/2", "Contact Attempt 2/2"];
 
 export default function TermOptimizationMail({ prospect }: { prospect: ProspectProfile }) {
-  const recipientName = prospect.recipientName || "Khem";
-  const senderFirstName = prospect.contactName.trim().split(/\s+/)[0] || "Our team";
+  const [activeTab, setActiveTab] = useState(0);
+  const recipient = prospect.recipientName || "Khem";
+  const firstName = prospect.contactName.trim().split(/\s+/)[0] || "Our team";
+  const company = prospect.companyName || "our team";
+
+  const emails = [
+    {
+      subject: `Save money on your ${company} subscription`,
+      body: (
+        <>
+          <p>Hey {recipient},</p>
+          <p>
+            {firstName} from {company} here. Thanks for being with us for a while - I&apos;m
+            hoping you have plans to stick around for the next year.
+          </p>
+          <p>
+            Just wanted to let you know that you can get 2 free months on your subscription by
+            upgrading to an annual plan.{" "}
+            <Link href="/demo/term-optimization/checkout" className="font-bold text-[#1a73e8] underline underline-offset-2">
+              Just click here
+            </Link>{" "}
+            <strong>and we&apos;ll take care of the rest.</strong>
+          </p>
+          <p>Let us know if you have any questions.</p>
+        </>
+      ),
+    },
+    {
+      subject: `Discount on your ${company} subscription`,
+      body: (
+        <>
+          <p>Hello {recipient}, wanted to make sure you saw my earlier note.</p>
+          <p>
+            No pressure, but figured you might want to save money on your {company} subscription.{" "}
+            <Link href="/demo/term-optimization/checkout" className="font-bold text-[#1a73e8] underline underline-offset-2">
+              Click here
+            </Link>{" "}
+            <strong>to get 2 months free by upgrading to an annual plan and we&apos;ll take care of the rest.</strong>
+          </p>
+          <p>Let us know if you have any questions.</p>
+        </>
+      ),
+    },
+  ];
+
+  const email = emails[activeTab];
 
   return (
-    <div className="min-h-screen bg-white text-[#202124]">
+    <div className="min-h-screen bg-[#f1f3f4] text-[#202124]">
       {/* Gmail top bar */}
-      <div className="flex items-center gap-4 border-b border-gray-200 px-6 py-3">
+      <div className="flex items-center gap-4 border-b border-gray-200 bg-white px-6 py-3">
         <div className="flex items-center gap-2 text-xl font-medium text-gray-700">
           <span className="text-2xl">📧</span> Gmail
         </div>
@@ -22,13 +69,29 @@ export default function TermOptimizationMail({ prospect }: { prospect: ProspectP
       </div>
 
       <div className="mx-auto max-w-4xl px-6 py-6">
+        {/* Attempt tabs */}
+        <div className="flex gap-0 mb-6 border-b border-gray-200">
+          {TABS.map((tab, i) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(i)}
+              className={`px-5 py-2.5 text-sm whitespace-nowrap transition border-b-2 -mb-px ${
+                activeTab === i
+                  ? "border-[#202124] font-semibold text-[#202124]"
+                  : "border-transparent text-gray-400 hover:text-gray-600"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Subject */}
         <div className="mb-4 flex items-center gap-3">
           <Link href="/demo/select" className="text-gray-500 hover:text-gray-700">
             ←
           </Link>
-          <h1 className="text-xl">
-            {termOptimizationSubjectLine(prospect)}
-          </h1>
+          <h1 className="text-xl font-semibold">{email.subject}</h1>
           <span className="rounded bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-800">
             External
           </span>
@@ -37,6 +100,7 @@ export default function TermOptimizationMail({ prospect }: { prospect: ProspectP
           </span>
         </div>
 
+        {/* Sender row */}
         <div className="border-b border-gray-100 pb-4">
           <div className="flex items-start gap-3">
             <SenderAvatar logo={prospect.logo} company={prospect.companyName} />
@@ -53,31 +117,13 @@ export default function TermOptimizationMail({ prospect }: { prospect: ProspectP
           </div>
         </div>
 
+        {/* Body */}
         <div className="space-y-4 py-8 text-[15px] leading-relaxed">
-          <p>Hey {recipientName},</p>
-          <p>
-            {senderFirstName} from {prospect.companyName || "our team"} here.
-            Thanks for being with us for a while - I&apos;m hoping you have plans to
-            stick around for the next year.
-          </p>
-          <p>
-            Just wanted to let you know that you can get 2 free months on your
-            subscription by upgrading to an annual plan.{" "}
-            <Link
-              href="/demo/term-optimization/checkout"
-              className="font-bold text-[#1a73e8] underline underline-offset-2"
-            >
-              Just click here
-            </Link>{" "}
-            <strong>and we&apos;ll take care of the rest.</strong>
-          </p>
-          <p>Let us know if you have any questions.</p>
+          {email.body}
           <p>-</p>
           <div>
             <p>{prospect.contactName}</p>
-            <p>
-              {prospect.jobTitle} at {prospect.companyName}
-            </p>
+            <p>{prospect.jobTitle} at {prospect.companyName}</p>
           </div>
           {prospect.logo && (
             // eslint-disable-next-line @next/next/no-img-element
@@ -90,8 +136,8 @@ export default function TermOptimizationMail({ prospect }: { prospect: ProspectP
         </div>
 
         <p className="border-t border-gray-100 pt-4 text-xs text-gray-500">
-          This order process is conducted by our online reseller &amp; Merchant of
-          Record, Paddle.com, who also handle order related inquiries and returns.
+          This order process is conducted by our online reseller &amp; Merchant of Record,
+          Paddle.com, who also handle order related inquiries and returns.
         </p>
       </div>
     </div>
