@@ -43,24 +43,14 @@ export default function DemoSelector() {
       {/* Top bar */}
       <header className="flex items-center justify-between border-b border-paddle-warm200 px-8 py-5">
         <PaddleLogoDark className="w-20" />
-        <div className="flex items-center gap-4">
-          {prospect.logo && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={prospect.logo}
-              alt={prospect.companyName}
-              className="h-7 w-auto object-contain opacity-80"
-            />
-          )}
-          <span className="hidden sm:block text-xs font-mono text-paddle-warm600/50 uppercase tracking-widest">
-            {prospect.companyName}
-          </span>
-        </div>
+        <span className="text-xs font-mono text-paddle-warm600/50 uppercase tracking-widest">
+          {prospect.companyName}
+        </span>
         <button
           onClick={() => router.push("/")}
           className="text-xs font-mono uppercase tracking-widest text-paddle-warm600/50 hover:text-paddle-warm600 transition"
         >
-          ← New prospect
+          ← New Demo
         </button>
       </header>
 
